@@ -24,18 +24,24 @@ public class CodificadorMedio implements Codificador {
                 char inicioAlfabeto = Character.isLowerCase(c) ? 'a' : 'A';
                 char fimAlfabeto = Character.isLowerCase(c) ? 'z' : 'Z';
     
-                // Inverte a posição no alfabeto
                 char novoCaractere = (char) (fimAlfabeto - (c - inicioAlfabeto));
                 encoded.append(novoCaractere);
             } else {
-                encoded.append(c); // Mantém caracteres não alfabéticos inalterados
+                encoded.append(c); 
             }
         }
         return encoded.toString();
     }
 
     public String decodifica(String str) {
-        return codifica(str); // A codificação é simétrica
+        return codifica(str); 
+    }
+
+    @Override
+    public String toString() {
+        return  "Nome: " + getNome() + 
+                ", Versão: " + getDataCriacao() + 
+                ", Nível de segurança: " + getNivelSeguranca() + ".";
     }
 
 }

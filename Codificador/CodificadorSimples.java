@@ -32,4 +32,11 @@ public class CodificadorSimples implements Codificador {
         
         return encoded.toString();
     }
+
+    @Override
+    public String toString() {
+        return  "Nome: " + getNome() + 
+                ", Versão: " + getDataCriacao() + 
+                ", Nível de segurança: " + getNivelSeguranca() + ".";
+    }
 }

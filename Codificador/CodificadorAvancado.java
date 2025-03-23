@@ -36,22 +36,31 @@ public class CodificadorAvancado implements Codificador {
 
     public String decodifica(String str) {
         StringBuilder decoded = new StringBuilder();
-        int shift = 3; // Mesmo deslocamento inicial
+        int shift = 3; 
 
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
 
             if (Character.isLetter(c)) {
                 char inicioAlfabeto = Character.isLowerCase(c) ? 'a' : 'A';
-                int novoIndice = (c - inicioAlfabeto - shift + 26) % 26; // Desfaz o deslocamento
+                int novoIndice = (c - inicioAlfabeto - shift + 26) % 26; 
                 decoded.append((char) (inicioAlfabeto + novoIndice));
-                shift++; // Mantém o deslocamento crescente
+                shift++; 
             } else {
-                decoded.append(c); // Mantém caracteres não alfabéticos
+                decoded.append(c); 
             }
         }
 
         return decoded.toString();
     }
+
+    @Override
+    public String toString() {
+        return  "Nome: " + getNome() + 
+                ", Versão: " + getDataCriacao() + 
+                ", Nível de segurança: " + getNivelSeguranca() + ".";
+    }
+
+    
 
 }
