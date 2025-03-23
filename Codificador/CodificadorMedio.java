@@ -1,8 +1,9 @@
 import java.time.LocalDate;
 
-public class CodificadorSimples implements Codificador {
+public class CodificadorMedio implements Codificador {
+
     public String getNome() {
-        return "Codificador Simples";
+        return "Codificador Médio";
     }
 
     public LocalDate getDataCriacao() {
@@ -10,27 +11,30 @@ public class CodificadorSimples implements Codificador {
     }
 
     public int getNivelSeguranca(){
-        return 1;
+        return 2;
     }
 
     public String codifica(String str) {
         StringBuilder encoded = new StringBuilder();
 
-        for (char c : str.toCharArray()) {
-            encoded.append((char) (c + 1));
-        }
+        
 
+        for (char c : str.toCharArray()) {
+            if (Character.isLetter(c)) { // Verifica se é uma letra
+                char inicioAlfabeto = Character.isLowerCase(c) ? 'a' : 'A';
+                char fimAlfabeto = Character.isLowerCase(c) ? 'z' : 'Z';
+    
+                char novoCaractere = (char) (fimAlfabeto - (c - inicioAlfabeto));
+                encoded.append(novoCaractere);
+            } else {
+                encoded.append(c); 
+            }
+        }
         return encoded.toString();
     }
 
     public String decodifica(String str) {
-        StringBuilder encoded = new StringBuilder();
-        
-        for (char c : str.toCharArray()) {
-            encoded.append((char) (c - 1));
-        }
-        
-        return encoded.toString();
+        return codifica(str); 
     }
 
     @Override
@@ -39,4 +43,5 @@ public class CodificadorSimples implements Codificador {
                 ", Versão: " + getDataCriacao() + 
                 ", Nível de segurança: " + getNivelSeguranca() + ".";
     }
+
 }
